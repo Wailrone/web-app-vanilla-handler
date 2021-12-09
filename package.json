@@ -1,0 +1,14 @@
+{
+  "name": "web-app-vanilla-handler",
+  "version": "1.0.0",
+  "description": "Web App Vanilla Handler",
+  "main": "private/main.js",
+  "scripts": {
+    "start": "node private/main.js"
+  },
+  "author": "Wailrone",
+  "license": "MIT",
+  "dependencies": {
+    "recursive-readdir": "^2.2.2"
+  }
+}

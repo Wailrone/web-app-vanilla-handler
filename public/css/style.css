@@ -1,0 +1,10 @@
+body {
+    background-color: #ffa700;
+    text-align: center;
+}
+
+h1 {
+    font-family: Consolas, monospace;
+    color: #fff;
+    font-size: 50px;
+}
