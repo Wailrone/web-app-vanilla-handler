@@ -41,16 +41,16 @@ class App {
                 if (this.parsedUrl.pathname.startsWith("/public") && req.method === "GET") {
                     try {
                         res.writeHead(200, { 'Content-Type': this.contentTypes[extname(this.parsedUrl.path).toString().toLowerCase()] || 'application/octet-stream' });
-                        res.end(readFileSync(`.${this.parsedUrl.path}`), 'utf-8');
+                        if (this.parsedUrl.path.endsWith('/')) this.parsedUrl.pathname = this.parsedUrl.pathname.substring(0, this.parsedUrl.pathname.length -1)
+                        res.end(readFileSync(`.${this.parsedUrl.pathname}`), 'utf-8');
                     }
                     catch (err) {
                         this.functions.createError(404)
                     }
                 }
-                else if (this.methods.includes(req.method) && this.parsedUrl.pathname !== "/public") this.routesLoader.getRoute(req.method, this.parsedUrl.pathname === "/" ? "home" : this.parsedUrl.pathname.substr(1)).run(req, res)
+                else if (this.methods.includes(req.method) && !this.parsedUrl.pathname.includes("/public/")) this.routesLoader.getRoute(req.method, this.parsedUrl.pathname === "/" ? "home" : this.parsedUrl.pathname.substr(1)).run(req, res)
             }
             catch (e) {
-                console.log(e)
                 this.functions.createError(404)
             }
         })

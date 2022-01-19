@@ -15,7 +15,7 @@ module.exports = class RoutesLoader {
     }
 
     addRoutes(method, pathOfFile) {
-        let splitedPathOfFile = pathOfFile.split('\\')
+        let splitedPathOfFile = pathOfFile.includes('/') ? pathOfFile.split('/') : pathOfFile.split('\\')
         splitedPathOfFile.splice(0, splitedPathOfFile.indexOf(method) + 1)
         this.routes[method].set(splitedPathOfFile.join('/').slice(0, -3), require(pathOfFile));
     }
